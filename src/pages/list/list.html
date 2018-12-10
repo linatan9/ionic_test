@@ -1,0 +1,73 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>My First List</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div class="checkbox-container">
+    <div class="checkbox-block">
+      <ion-checkbox  [checked]="checkAll" (click)="changeCheckAll($event)"></ion-checkbox>
+      <span>All</span>
+    </div>
+    <div class="checkbox-block">
+      <ion-checkbox [checked]="cardCheck" (click)="changeCheckCard($event)"></ion-checkbox>
+      <span>Card</span>
+    </div>
+
+    <div class="checkbox-block">
+      <ion-checkbox  [checked]="cashCheck" (click)="changeCheckCash($event)"></ion-checkbox>
+      <span>Cash</span>
+    </div>
+  </div>
+  <div class="item-block" *ngFor="let group of filteredData">
+    <div class="icon-cashType">
+      <img src={{iconCash}} alt="" *ngIf="group.cashType === 'cash'">
+      <img src={{iconVisa}} alt="" *ngIf="group.cashType === 'card'">
+    </div>
+    <div class="content-block">
+      <div class="avatar-block">
+        <div class="avatar-image-contariner">
+          <img src={{group.avatar}} alt="">
+        </div>
+        <div class="stars-block">
+          <div class="star"
+               *ngFor="let image of starsNumber;let i = index">
+            <img  *ngIf="i >= group.rate"
+                 src={{starEmpty}}
+
+            >
+            <img  *ngIf="i < group.rate"
+                  src={{starYellow}}
+
+            >
+          </div>
+        </div>
+      </div>
+      <div class="description-container">
+        <span class="group-name">{{group.name}}</span>
+        <div class="group-details">
+          <div class="group-details-row" *ngFor="let item of group.descriptionItems">
+            <img class="group-details-row-img"
+                 src={{item.img}}>
+            <span>{{item.description}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="buttons-block">
+      <button ion-button color="secondary" (click)="showPopUp(group)">Details</button>
+      <button ion-button (click)="showPopUp(group)">Accept</button>
+      <button ion-button outline primary (click)="showPopUp(group)">Cancel</button>
+    </div>
+  </div>
+</ion-content>
+  <page-popup *ngIf="isShowPopup"
+              [checkedGroup]="checkedGroup"
+              (closePopup)="closePopup()"
+  >
+
+  </page-popup>

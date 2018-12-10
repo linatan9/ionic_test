@@ -1,0 +1,32 @@
+<ion-menu [content]="content">
+
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Pages</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-list>
+      <button ion-item *ngFor="let p of pages" (click)="openPage(p)">
+        {{p.title}}
+      </button>
+    </ion-list>
+  </ion-content>
+
+</ion-menu>
+
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
+<!--<div class="google-data">-->
+  <!--<b>accessToken: {{googleData.accessToken}}</b>-->
+  <!--<b>displayName: {{googleData.displayName}}</b>-->
+  <!--<b>email: {{googleData.email}}</b>-->
+  <!--<b>expires: {{googleData.expires}}</b>-->
+  <!--<b>expires_in: {{googleData.expires_in}}</b>-->
+  <!--<b>familyName: {{googleData.familyName}}</b>-->
+  <!--<b>givenName: {{googleData.givenName}}</b>-->
+  <!--<b>userId: {{googleData.userId}}</b>-->
+<!--</div>-->
+<!--<p>-->
+  <!--<button ion-button color="primary" (click)="login()">Login</button>-->
+<!--</p>-->

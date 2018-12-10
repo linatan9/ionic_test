@@ -1,0 +1,39 @@
+
+<ion-content class="popup-container">
+  <div class="popup-wrapper">
+    <div class="popup-block">
+      <div class="icon-popup-close" (click)="close()">
+        <img src={{iconClose}}>
+      </div>
+      <div class="popup-title">Some Title</div>
+      <div class="description-popup-container">
+        <span class="group-name">{{checkedGroup.name}}</span>
+        <div class="group-details">
+          <div class="stars-block">
+            <div class="star"
+                 *ngFor="let image of starsNumber;let i = index">
+              <img  *ngIf="i >= checkedGroup.rate"
+                    src={{starEmpty}}
+
+              >
+              <img  *ngIf="i < checkedGroup.rate"
+                    src={{starYellow}}
+
+              >
+            </div>
+          </div>
+          <div class="group-details-row" *ngFor="let item of checkedGroup.descriptionItems">
+            <img class="group-details-row-img"
+                 src={{item.img}}>
+            <span>{{item.description}}</span>
+          </div>
+        </div>
+        <div class="icon-popup-cashType">
+          <img src={{iconCash}} alt="" *ngIf="checkedGroup.cashType === 'cash'">
+          <img src={{iconVisa}} alt="" *ngIf="checkedGroup.cashType === 'card'">
+        </div>
+      </div>
+      <button ion-button color="secondary" (click)="close()">Close</button>
+    </div>
+  </div>
+</ion-content>
